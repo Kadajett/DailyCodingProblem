@@ -11,9 +11,13 @@
  */
 function doAdd(numArray, sum) {
     let doesAdd = false;
+    let hash = {};
+    numArray.forEach(num1 => {
+        hash[num1] = num1;
+    });
     numArray.forEach(num1 => {
         let diff = sum - num1;
-        if (numArray.indexOf(diff) !== -1) {
+        if (hash[diff]) {
             doesAdd = true;
         }
     });
