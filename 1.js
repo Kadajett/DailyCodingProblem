@@ -11,13 +11,13 @@
  */
 function doAdd(numArray, sum) {
     let doesAdd = false;
-    let hash = {};
-    numArray.forEach(num1 => {
-        hash[num1] = num1;
-    });
+    // let hash = {};
+    // numArray.forEach(num1 => {
+    //     hash[num1] = num1;
+    // });
     numArray.forEach(num1 => {
         let diff = sum - num1;
-        if (hash[diff]) {
+        if (numArray.indexOf(diff) !== -1) {
             doesAdd = true;
         }
     });
@@ -32,5 +32,37 @@ function doAdd(numArray, sum) {
 
     console.log(doesAdd);
 }
+function doAdd1(numArray, sum) {
+    let doesAdd = false;
+    let hash = {};
+    numArray.forEach(num1 => {
+        hash[num1] = num1;
+    });
 
+
+    for(let i = 0; i < numArray.length; i++) {
+        let num1 = numArray[i];
+        let diff = sum - num1;
+        if (hash[diff]) {
+            doesAdd = true;
+            break;
+        }
+    }
+
+    // numArray.forEach(num1 => {
+    //     numArray.forEach(num2 => {
+    //         if (num1 + num2 === sum) {
+    //             doesAdd = true;
+    //         }
+    //     });
+    // });
+
+    console.log(doesAdd);
+}
+
+console.time('timer');
 doAdd([10, 15, 3, 7], 17);
+console.timeEnd('timer');
+console.time('timer2');
+doAdd1([10, 12, 5, 9], 17);
+console.timeEnd('timer2');
